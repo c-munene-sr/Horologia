@@ -1,0 +1,138 @@
+:root {
+  --gold: #d4af37;
+  --gold-glow: rgba(212, 175, 55, 0.6);
+  --dark-bg: #0a0a0a;
+  --text-light: #f5f0e6;
+  --shadow-deep: 0 80px 80px rgba(0, 0, 0, 0.95);
+  --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  background: var(--dark-bg);
+  color: var(--text-light);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 7.2rem;
+  letter-spacing: 1.4rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-shadow: 0 0 80px var(--gold-glow);
+}
+
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, transparent 30%, rgba(10, 10, 10, 0.97) 75%, var(--dark-bg));
+  box-shadow: var(--shadow-deep);
+  overflow: hidden;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  text-align: center;
+  width: 100%;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  opacity: 0.9;
+  letter-spacing: 0.3rem;
+}
+
+.prompt {
+  margin-top: 2.5rem;
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0.25rem;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.layer-1 { background-image: linear-gradient(to bottom, transparent 55%, rgba(10,10,10,0.9)), url("https://images.pexels.com/photos/34182730/pexels-photo-34182730.jpeg"); z-index: 10; }
+.layer-2 { background-image: linear-gradient(to bottom, transparent 45%, rgba(10,10,10,0.92)), url("https://images.pexels.com/photos/31123762/pexels-photo-31123762.jpeg"); z-index: 20; }
+.layer-3 { background-image: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.9)), url("https://images.pexels.com/photos/34182729/pexels-photo-34182729.jpeg"); z-index: 30; }
+.layer-4 { background-image: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.88)), url("https://images.pexels.com/photos/32942758/pexels-photo-32942758.jpeg"); z-index: 40; }
+.layer-5 { background-image: linear-gradient(to bottom, transparent 35%, rgba(10,10,10,0.9)), url("https://images.pexels.com/photos/35463236/pexels-photo-35463236.jpeg"); z-index: 50; }
+.layer-6 { background-image: linear-gradient(to bottom, transparent 45%, rgba(10,10,10,0.92)), url("https://images.pexels.com/photos/34182730/pexels-photo-34182730.jpeg"); z-index: 60; }
+.layer-7 { background-image: linear-gradient(to bottom, transparent 55%, rgba(10,10,10,0.9)), url("https://images.pexels.com/photos/31123762/pexels-photo-31123762.jpeg"); z-index: 70; }
+.layer-8 { background-image: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.95)), url("https://images.pexels.com/photos/34182729/pexels-photo-34182729.jpeg"); z-index: 80; }
+.layer-9 { background-image: linear-gradient(to bottom, transparent 60%, rgba(10,10,10,0.85)), url("https://images.pexels.com/photos/32942758/pexels-photo-32942758.jpeg"); z-index: 90; }
+
+.watch-element {
+  position: absolute;
+  z-index: 1000;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.85));
+  transition: var(--transition-smooth);
+  will-change: transform;
+}
+
+.watch-element:hover {
+  transform: scale(1.15) rotate(12deg);
+  filter: drop-shadow(0 30px 50px var(--gold-glow));
+}
+
+.gear-1 {
+  animation: slowRotate 80s linear infinite;
+  width: 200px;
+  height: 200px;
+  right: 8%;
+  top: 22%;
+}
+
+.content {
+  position: relative;
+  background: var(--dark-bg) url("<img class="parallax-el watch-element gear-1" src="https://images.pexels.com/photos/30075561/pexels-photo-30075561.jpeg" alt="Intricate mechanical watch movement and gears macro" data-speed="0.3" data-rotate="0.05">") center/cover fixed;
+  padding-bottom: 15rem;
+}
+
+.text {
+  padding: 8rem 15rem 20rem 12rem;
+  max-width: 960px;
+  font-size: 1.32rem;
+  line-height: 1.9;
+}
+
+@media (max-width: 1200px) {
+  .watch-element,
+  .layer {
+    display: none;
+  }
+  h1 { font-size: 4.2rem; letter-spacing: 0.4rem; }
+  .text { padding: 5rem 2rem; }
+  .hero-text { padding: 0 1rem; }
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
