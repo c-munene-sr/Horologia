@@ -1,19 +1,31 @@
-$(window).on('scroll', function() {
-    requestAnimationFrame(parallaxScroll);
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    const revealElements = document.querySelectorAll('.reveal');
 
-function parallaxScroll() {
-    const scrolled = $(window).scrollTop();
-    
-    $('.layer-1').css('transform', `translateY(${scrolled * -0.15}px)`);
-    $('.layer-2').css('transform', `translateY(${scrolled * -0.25}px)`);
-    $('.layer-3').css('transform', `translateY(${scrolled * -0.38}px)`);
-    $('.layer-4').css('transform', `translateY(${scrolled * -0.52}px)`);
-    $('.layer-5').css('transform', `translateY(${scrolled * -0.68}px)`);
-    $('.layer-6').css('transform', `translateY(${scrolled * -0.80}px)`);
-    $('.layer-7').css('transform', `translateY(${scrolled * -0.90}px)`);
-    $('.layer-8').css('transform', `translateY(${scrolled * -1.02}px)`);
-    $('.layer-9').css('transform', `translateY(${scrolled * -1.12}px)`);
-    
-    $('.gear-1').css('transform', `translateY(${280 - scrolled * 0.48}px)`);
-}
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('active'); observer.unobserve(entry.target); 
+            }
+        });
+    }, revealOptions);
+
+    revealElements.forEach(el => {
+        revealOnScroll.observe(el);
+    });
+});
